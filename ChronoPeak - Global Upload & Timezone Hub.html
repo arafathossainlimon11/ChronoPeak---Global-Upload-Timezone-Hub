@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChronoPeak - Global Audience Upload & Timezone Hub</title>
+  
+  <!-- Favicon & Apple Touch Icons -->
+  <link rel="icon" type="image/png" href="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png">
+  <link rel="apple-touch-icon" href="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png">
+  
+  <!-- Open Graph & Social Meta Tags -->
+  <meta property="og:title" content="ChronoPeak - Global Audience Upload & Timezone Hub">
+  <meta property="og:description" content="Real-time global timezone tracker and smart content upload audience meter for creators targeting international markets.">
+  <meta property="og:image" content="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ChronoPeak - Global Audience Upload & Timezone Hub">
+  <meta name="twitter:description" content="Real-time global timezone tracker and smart content upload audience meter for creators.">
+  <meta name="twitter:image" content="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              accent: '#a855f7',
+              darkBg: '#080c14',
+              cardBg: 'rgba(15, 23, 42, 0.7)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Custom Aesthetics & Micro-interactions */
+    body {
+      background-color: #080c14;
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(6, 182, 212, 0.14) 0px, transparent 45%),
+        radial-gradient(at 90% 90%, rgba(168, 85, 247, 0.14) 0px, transparent 45%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 80%);
+      background-attachment: fixed;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080c14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card-interactive {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-interactive:hover {
+      border-color: rgba(6, 182, 212, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.25);
+    }
+
+    /* Range Slider Styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: transparent;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 10px;
+      cursor: pointer;
+      background: #1e293b;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #06b6d4, #a855f7);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -8px;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+      transition: transform 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .glow-cyan {
+      text-shadow: 0 0 25px rgba(6, 182, 212, 0.55);
+    }
+
+    .pulse-dot {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+  </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="sticky top-0 z-40 glass-card border-b border-slate-800/80 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Logo & Branding -->
+      <div class="flex items-center gap-3.5 cursor-pointer" onclick="scrollToTop()">
+        <div class="relative flex items-center justify-center p-1 rounded-2xl bg-gradient-to-tr from-cyan-500/20 via-purple-500/20 to-cyan-500/10 border border-cyan-500/40 shadow-lg shadow-cyan-500/10 hover:border-cyan-400 transition">
+          <img src="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png" 
+               alt="ChronoPeak Logo" 
+               class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(6,182,212,0.45)]">
+          <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-cyan-400 via-sky-300 to-purple-400 bg-clip-text text-transparent">
+            ChronoPeak
+          </h1>
+          <p class="text-[10px] text-slate-400 font-semibold tracking-wide uppercase">Global Upload & Timezone Hub</p>
+        </div>
+      </div>
+
+      <!-- Quick Search Trigger -->
+      <div class="flex-1 max-w-md hidden md:block">
+        <button onclick="openSearchModal()" class="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 text-sm hover:border-cyan-500/50 hover:text-slate-200 transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-cyan-400"></i>
+            <span>Search country, city or timezone...</span>
+          </span>
+          <kbd class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-400 rounded border border-slate-700">Ctrl + K</kbd>
+        </button>
+      </div>
+
+      <!-- Settings & Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Search Mobile Button -->
+        <button onclick="openSearchModal()" class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400" title="Search Timezones">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- 12H / 24H Format Toggle -->
+        <button id="formatToggleBtn" onclick="toggleTimeFormat()" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:border-cyan-500/50 transition">
+          <i class="fa-solid fa-sliders text-purple-400"></i>
+          <span id="formatText">12-HOUR</span>
+        </button>
+
+        <!-- User Local Time Badge -->
+        <div class="hidden lg:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span>Your Local:</span>
+          <span id="headerLocalTime" class="font-mono text-cyan-300 font-semibold">00:00:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 space-y-8 flex-1 w-full">
+
+    <!-- QUICK REGION CHIPS BAR -->
+    <section class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs">
+      <span class="text-slate-400 font-medium px-1 flex items-center gap-1.5 shrink-0">
+        <i class="fa-solid fa-fire text-amber-400"></i> Hot Markets:
+      </span>
+      <div id="quickChipsContainer" class="flex items-center gap-2">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- HERO SECTION: HERO TARGET CITY CLOCK & AUDIENCE PEAK METER -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- LEFT HERO CLOCK CARD (7 Cols) -->
+      <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+        <!-- Background Ambient Aura -->
+        <div id="heroAura" class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none transition-all duration-700"></div>
+
+        <!-- Target Header Bar -->
+        <div class="flex items-start justify-between gap-4 mb-6 z-10">
+          <div>
+            <div class="flex items-center gap-3">
+              <span id="heroFlag" class="text-4xl sm:text-5xl">🇺🇸</span>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 id="heroCity" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">New York</h2>
+                  <span id="heroCountry" class="text-sm font-semibold text-slate-400 bg-slate-900/80 px-2.5 py-0.5 rounded-lg border border-slate-800">USA</span>
+                </div>
+                <p id="heroTimezoneCode" class="text-xs text-cyan-400 font-mono mt-1 font-semibold">EST (UTC-5)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <!-- Pin Button -->
+            <button id="heroPinBtn" onclick="togglePinHero()" class="p-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 transition" title="Pin/Unpin Market">
+              <i id="heroPinIcon" class="fa-regular fa-bookmark text-base"></i>
+            </button>
+            
+            <!-- Copy Info Button -->
+            <button onclick="copyHeroTimeInfo()" class="p-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition" title="Copy Live Info">
+              <i class="fa-regular fa-copy text-base"></i>
+            </button>
+            
+            <!-- Change Target Button -->
+            <button onclick="openSearchModal()" class="px-3.5 py-2 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold hover:bg-cyan-500/20 transition flex items-center gap-2">
+              <i class="fa-solid fa-arrows-rotate"></i>
+              <span class="hidden sm:inline">Switch Target</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Digital Clock Display -->
+        <div class="my-4 sm:my-6 z-10">
+          <div class="flex items-baseline gap-2 sm:gap-3 flex-wrap">
+            <span id="heroDigitalClock" class="font-mono text-5xl sm:text-7xl font-black tracking-tight text-white glow-cyan">
+              00:00:00
+            </span>
+            <span id="heroAmPm" class="text-xl sm:text-3xl font-mono font-bold text-cyan-400 uppercase">
+              AM
+            </span>
+          </div>
+
+          <!-- Date & Day/Night Indicator -->
+          <div class="mt-4 flex flex-wrap items-center gap-3 text-xs sm:text-sm font-medium">
+            <div class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300">
+              <i class="fa-regular fa-calendar text-cyan-400"></i>
+              <span id="heroFullDate">Wednesday, Oct 28, 2026</span>
+            </div>
+
+            <!-- Day / Night Badge -->
+            <div id="heroDayNightBadge" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">
+              <span id="heroDayNightIcon">☀️</span>
+              <span id="heroDayNightText">Daytime</span>
+            </div>
+
+            <!-- Time Difference relative to local -->
+            <div id="heroTimeDiffBadge" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-purple-300">
+              <i class="fa-solid fa-clock text-purple-400"></i>
+              <span id="heroTimeDiffText">Same time as you</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description Note -->
+        <div class="mt-4 pt-4 border-t border-slate-800/80 text-xs text-slate-400 flex items-center justify-between z-10">
+          <span id="heroDescription" class="truncate max-w-md">US Eastern Time Zone - Major YouTube & TikTok Market</span>
+          <span class="text-cyan-400/80 font-mono text-[11px] shrink-0">Live Dynamic Clock</span>
+        </div>
+      </div>
+
+      <!-- RIGHT AUDIENCE PEAK METER CARD (5 Cols) -->
+      <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-t-4 border-t-cyan-500 shadow-2xl relative">
+        <div>
+          <!-- Title -->
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-base">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-lg leading-tight">Audience Activity Meter</h3>
+                <p class="text-[11px] text-slate-400">Target Market Online Viewer Index</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-400">Real-Time</span>
+          </div>
+
+          <!-- Peak Status Indicator Card -->
+          <div id="peakStatusBox" class="rounded-2xl p-5 mb-5 transition-all duration-300 bg-emerald-950/40 border border-emerald-500/40">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div id="peakBadgeIcon" class="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-2xl text-emerald-400">
+                  🔥
+                </div>
+                <div>
+                  <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Current Audience State</p>
+                  <h4 id="peakStatusTitle" class="text-lg font-extrabold text-emerald-300">PEAK UPLOAD TIME</h4>
+                </div>
+              </div>
+              <span id="peakScoreBadge" class="text-2xl font-black font-mono text-emerald-400">95%</span>
+            </div>
+            <p id="peakStrategyAdvice" class="text-xs text-slate-300 mt-3.5 leading-relaxed">
+              Target audience is highly active online right now! Prime window for Shorts, Reels, and YouTube main uploads.
+            </p>
+          </div>
+
+          <!-- Peak Hours Schedule Breakdown -->
+          <div class="space-y-2 text-xs">
+            <p class="font-semibold text-slate-400 text-[11px] uppercase tracking-wider mb-2">Target Peak Windows (Target City Time):</p>
+            
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <span class="flex items-center gap-2 text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Evening Prime Peak:
+              </span>
+              <span class="font-mono text-emerald-300 font-bold">07:00 PM - 10:00 PM</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <span class="flex items-center gap-2 text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Lunch Break Peak:
+              </span>
+              <span class="font-mono text-emerald-300 font-bold">12:00 PM - 02:00 PM</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <span class="flex items-center gap-2 text-slate-400">
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span> Off-Peak / Sleeping:
+              </span>
+              <span class="font-mono text-slate-500">12:00 AM - 07:00 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <span>Targeting YouTube, TikTok, Facebook & Reels</span>
+          <span class="text-cyan-400 font-medium">Smart Audience Algorithm</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR & TIME CONVERTER SECTION -->
+    <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+        <div>
+          <div class="flex items-center gap-2 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Interactive Creator Tool
+          </div>
+          <h3 class="text-xl font-bold text-white mt-1">Local Upload Time Simulator</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Scrub your local time to preview exact target city hours and engagement potential.</p>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-slate-500 font-medium">Presets:</span>
+          <button onclick="setSliderLocalHour(9)" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-cyan-500/40">Morning 9 AM</button>
+          <button onclick="setSliderLocalHour(14)" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-cyan-500/40">Afternoon 2 PM</button>
+          <button onclick="setSliderLocalHour(21)" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:border-cyan-500/40">Night 9 PM</button>
+        </div>
+      </div>
+
+      <!-- Slider & Live Output Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        
+        <!-- Slider Control (7 Cols) -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="flex items-center justify-between text-sm">
+            <label for="timeSlider" class="font-semibold text-slate-300 flex items-center gap-2">
+              <i class="fa-solid fa-clock text-cyan-400"></i> Set Your Local Upload Time:
+            </label>
+            <span id="sliderLocalDisplay" class="font-mono text-lg font-bold text-cyan-300 bg-slate-900 px-3 py-1 rounded-xl border border-slate-800">
+              08:00 PM
+            </span>
+          </div>
+
+          <input type="range" id="timeSlider" min="0" max="1410" step="30" value="1200" oninput="onSliderChange(this.value)" class="w-full">
+
+          <div class="flex justify-between text-[11px] font-mono text-slate-500 px-1">
+            <span>12:00 AM (Midnight)</span>
+            <span>06:00 AM</span>
+            <span>12:00 PM (Noon)</span>
+            <span>06:00 PM</span>
+            <span>11:30 PM</span>
+          </div>
+        </div>
+
+        <!-- Converted Output Card (5 Cols) -->
+        <div class="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+            <span>Target City Result:</span>
+            <span id="simTargetCityName" class="font-semibold text-cyan-400">New York, USA</span>
+          </div>
+
+          <div class="flex items-baseline justify-between">
+            <div>
+              <p class="text-xs text-slate-500">Converted Target Time:</p>
+              <p id="simTargetTimeDisplay" class="font-mono text-3xl font-extrabold text-white mt-0.5">10:00 AM</p>
+              <p id="simTargetDayDiff" class="text-[11px] text-purple-300 font-medium mt-0.5">Same Calendar Day</p>
+            </div>
+
+            <!-- Calculated Rating Badge -->
+            <div id="simRatingBadge" class="text-right">
+              <span id="simRatingIcon" class="text-2xl">⚡</span>
+              <p id="simRatingText" class="text-xs font-bold text-amber-400 mt-1">Moderate Activity</p>
+            </div>
+          </div>
+
+          <!-- Optimal Local Windows Recommendation Box -->
+          <div id="optimalWindowsBox" class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-300 space-y-1">
+            <p class="font-semibold text-cyan-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-bullseye"></i> To hit Target Evening Peak (7-10 PM):
+            </p>
+            <p id="optimalLocalRange" class="font-mono text-emerald-400 font-bold pl-5">
+              Upload between 05:00 AM - 08:00 AM your local time
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PINNED FAVORITE CITIES GRID SECTION -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-star text-amber-400"></i>
+          <h3 class="text-lg font-bold text-white">Pinned Creator Markets</h3>
+          <span id="pinnedCountBadge" class="px-2.5 py-0.5 rounded-full bg-slate-800 text-xs text-slate-400 font-mono">6 Pinned</span>
+        </div>
+
+        <button onclick="openSearchModal()" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1.5">
+          <i class="fa-solid fa-plus"></i> Add More Cities
+        </button>
+      </div>
+
+      <!-- Grid Cards -->
+      <div id="pinnedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="glass-card border-t border-slate-800/80 mt-12 py-8 px-4 lg:px-8 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <!-- Logo Branding -->
+      <div class="flex items-center gap-3">
+        <img src="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png" 
+             alt="ChronoPeak Logo" 
+             class="w-9 h-9 object-contain drop-shadow">
+        <div>
+          <p class="font-bold text-slate-200 text-sm">ChronoPeak — Global Audience Upload Hub</p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Designed for YouTube, TikTok, Facebook & Reels creators targeting global markets.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-slate-400">
+        <span class="hover:text-cyan-400 cursor-pointer flex items-center gap-1.5" onclick="scrollToTop()">
+          <i class="fa-solid fa-arrow-up"></i> Back to Top
+        </span>
+        <span class="hover:text-cyan-400 cursor-pointer flex items-center gap-1.5" onclick="openSearchModal()">
+          <i class="fa-solid fa-globe"></i> Browse 190+ Timezones
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GLOBAL SEARCH & TIMEZONE MODAL -->
+  <div id="searchModal" class="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6 lg:p-10 bg-slate-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-200">
+    <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-slate-800 shadow-2xl space-y-4 max-h-[85vh] flex flex-col my-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <img src="https://i.ibb.com/0RXdQgnF/file-000000004df08208ab4158d6510bdff7.png" alt="ChronoPeak" class="w-6 h-6 object-contain">
+          <h3 class="font-bold text-white text-lg">Select Target Country or City</h3>
+        </div>
+        <button onclick="closeSearchModal()" class="w-8 h-8 rounded-xl bg-slate-900 text-slate-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" oninput="onSearchInput(this.value)" placeholder="Search USA, Mexico, London, Tokyo, Dhaka, Dubai..." class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition">
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+        <button onclick="filterRegion('all')" class="region-tab-btn active px-3 py-1.5 rounded-xl bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">All</button>
+        <button onclick="filterRegion('Americas')" class="region-tab-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Americas</button>
+        <button onclick="filterRegion('Europe')" class="region-tab-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Europe</button>
+        <button onclick="filterRegion('Asia')" class="region-tab-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-800">Asia & Pacific</button>
+      </div>
+
+      <!-- Results List -->
+      <div id="searchResultsList" class="overflow-y-auto space-y-2 flex-1 pr-1">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION FLOATER -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 glass-card px-4 py-3 rounded-2xl border border-cyan-500/40 text-xs font-semibold text-cyan-300 flex items-center gap-3 shadow-2xl translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-base text-cyan-400"></i>
+    <span id="toastMsg">Action completed successfully!</span>
+  </div>
+
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // GLOBAL TIMEZONE DATABASE
+    const TIMEZONES = [
+      { id: 'usa-ny', city: 'New York', country: 'USA', flag: '🇺🇸', tz: 'America/New_York', region: 'Americas', tag: 'US Eastern (EST/EDT) - YouTube/TikTok Hub' },
+      { id: 'usa-la', city: 'Los Angeles', country: 'USA', flag: '🇺🇸', tz: 'America/Los_Angeles', region: 'Americas', tag: 'US Pacific (PST/PDT) - Entertainment Hub' },
+      { id: 'usa-chi', city: 'Chicago', country: 'USA', flag: '🇺🇸', tz: 'America/Chicago', region: 'Americas', tag: 'US Central Time (CST/CDT)' },
+      { id: 'usa-den', city: 'Denver', country: 'USA', flag: '🇺🇸', tz: 'America/Denver', region: 'Americas', tag: 'US Mountain Time (MST/MDT)' },
+      { id: 'mexico-cdmx', city: 'Mexico City', country: 'Mexico', flag: '🇲🇽', tz: 'America/Mexico_City', region: 'Americas', tag: 'CST - Top Spanish Speaking Audience Market' },
+      { id: 'mexico-cancun', city: 'Cancún', country: 'Mexico', flag: '🇲🇽', tz: 'America/Cancun', region: 'Americas', tag: 'EST - Eastern Mexico Hub' },
+      { id: 'mexico-tijuana', city: 'Tijuana', country: 'Mexico', flag: '🇲🇽', tz: 'America/Tijuana', region: 'Americas', tag: 'PST - Baja California Region' },
+      { id: 'uk-london', city: 'London', country: 'United Kingdom', flag: '🇬🇧', tz: 'Europe/London', region: 'Europe', tag: 'GMT/BST - Major European & Global Market' },
+      { id: 'japan-tokyo', city: 'Tokyo', country: 'Japan', flag: '🇯🇵', tz: 'Asia/Tokyo', region: 'Asia', tag: 'JST - East Asia Gaming & Tech Audience' },
+      { id: 'bd-dhaka', city: 'Dhaka', country: 'Bangladesh', flag: '🇧🇩', tz: 'Asia/Dhaka', region: 'Asia', tag: 'BST (UTC+6) - South Asian Home Market' },
+      { id: 'canada-toronto', city: 'Toronto', country: 'Canada', flag: '🇨🇦', tz: 'America/Toronto', region: 'Americas', tag: 'EST - Canadian Main Content Hub' },
+      { id: 'canada-vancouver', city: 'Vancouver', country: 'Canada', flag: '🇨🇦', tz: 'America/Vancouver', region: 'Americas', tag: 'PST - West Coast Canada' },
+      { id: 'brazil-sp', city: 'São Paulo', country: 'Brazil', flag: '🇧🇷', tz: 'America/Sao_Paulo', region: 'Americas', tag: 'BRT - Largest South American Market' },
+      { id: 'germany-berlin', city: 'Berlin', country: 'Germany', flag: '🇩🇪', tz: 'Europe/Berlin', region: 'Europe', tag: 'CET/CEST - Central Europe Market' },
+      { id: 'france-paris', city: 'Paris', country: 'France', flag: '🇫🇷', tz: 'Europe/Paris', region: 'Europe', tag: 'CET/CEST - Western Europe Hub' },
+      { id: 'uae-dubai', city: 'Dubai', country: 'United Arab Emirates', flag: '🇦🇪', tz: 'Asia/Dubai', region: 'Asia', tag: 'GST (UTC+4) - Middle East Hub' },
+      { id: 'saudi-riyadh', city: 'Riyadh', country: 'Saudi Arabia', flag: '🇸🇦', tz: 'Asia/Riyadh', region: 'Asia', tag: 'AST - High Engagement Gulf Audience' },
+      { id: 'india-mumbai', city: 'Mumbai', country: 'India', flag: '🇮🇳', tz: 'Asia/Kolkata', region: 'Asia', tag: 'IST (UTC+5:30) - Massive Creator Audience' },
+      { id: 'pakistan-karachi', city: 'Karachi', country: 'Pakistan', flag: '🇵🇰', tz: 'Asia/Karachi', region: 'Asia', tag: 'PKT (UTC+5) - South Asia Region' },
+      { id: 'singapore', city: 'Singapore', country: 'Singapore', flag: '🇸🇬', tz: 'Asia/Singapore', region: 'Asia', tag: 'SGT - Southeast Asia Digital Hub' },
+      { id: 'australia-sydney', city: 'Sydney', country: 'Australia', flag: '🇦🇺', tz: 'Australia/Sydney', region: 'Asia', tag: 'AEST/AEDT - Australian Main Market' },
+      { id: 'southkorea-seoul', city: 'Seoul', country: 'South Korea', flag: '🇰🇷', tz: 'Asia/Seoul', region: 'Asia', tag: 'KST - East Asia K-Culture & Gaming' },
+      { id: 'philippines-manila', city: 'Manila', country: 'Philippines', flag: '🇵🇭', tz: 'Asia/Manila', region: 'Asia', tag: 'PST - High Social Media Engagement' },
+      { id: 'egypt-cairo', city: 'Cairo', country: 'Egypt', flag: '🇪🇬', tz: 'Africa/Cairo', region: 'Africa', tag: 'EET - North Africa Arabic Market' },
+      { id: 'southafrica-jhb', city: 'Johannesburg', country: 'South Africa', flag: '🇿🇦', tz: 'Africa/Johannesburg', region: 'Africa', tag: 'SAST - African Regional Market' }
+    ];
+
+    // APPLICATION STATE
+    let state = {
+      selectedId: 'usa-ny',
+      pinnedIds: ['usa-ny', 'usa-la', 'mexico-cdmx', 'uk-london', 'japan-tokyo', 'bd-dhaka'],
+      is24Hour: false,
+      activeRegionFilter: 'all',
+      sliderMinutes: 1200 // 8:00 PM local default
+    };
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      // Load stored state if exists
+      const savedPins = localStorage.getItem('chrono_pinned_ids');
+      if (savedPins) {
+        try { state.pinnedIds = JSON.parse(savedPins); } catch(e){}
+      }
+
+      const savedFormat = localStorage.getItem('chrono_24h');
+      if (savedFormat !== null) {
+        state.is24Hour = savedFormat === 'true';
+      }
+
+      // Initialize Slider to current local time
+      const now = new Date();
+      state.sliderMinutes = now.getHours() * 60 + Math.floor(now.getMinutes() / 30) * 30;
+      document.getElementById('timeSlider').value = state.sliderMinutes;
+
+      renderQuickChips();
+      renderSearchResults();
+      updateAppUI();
+
+      // Start tick loop
+      setInterval(tickClocks, 1000);
+      tickClocks();
+
+      // Keyboard Shortcut Ctrl+K for search
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          openSearchModal();
+        }
+        if (e.key === 'Escape') {
+          closeSearchModal();
+        }
+      });
+    });
+
+    // TIME TICK LOOP
+    function tickClocks() {
+      const now = new Date();
+
+      // Update header local clock
+      const localFormatted = formatTimeFromDate(now, null, state.is24Hour);
+      document.getElementById('headerLocalTime').innerText = localFormatted.timeStr + (state.is24Hour ? '' : ' ' + localFormatted.ampm);
+
+      // Update Hero Selected Clock
+      renderHeroClock(now);
+
+      // Update Pinned Cards Grid Clocks
+      renderPinnedGridClocks(now);
+
+      // Update Converter Output
+      updateConverterOutput();
+    }
+
+    // TIME FORMAT HELPER (Using Intl API)
+    function getTimeInZone(tzString, baseDate = new Date()) {
+      try {
+        const options = {
+          timeZone: tzString,
+          hour12: !state.is24Hour,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        };
+
+        const partsFormatter = new Intl.DateTimeFormat('en-US', options);
+        const parts = partsFormatter.formatToParts(baseDate);
+        const map = {};
+        parts.forEach(p => map[p.type] = p.value);
+
+        // Raw 24H hour calculation for math
+        const rawHourFormatter = new Intl.DateTimeFormat('en-US', { timeZone: tzString, hour: 'numeric', hourCycle: 'h23' });
+        const rawHour = parseInt(rawHourFormatter.format(baseDate), 10);
+
+        const rawMinuteFormatter = new Intl.DateTimeFormat('en-US', { timeZone: tzString, minute: 'numeric' });
+        const rawMinute = parseInt(rawMinuteFormatter.format(baseDate), 10);
+
+        return {
+          timeStr: `${map.hour}:${map.minute}:${map.second}`,
+          ampm: map.dayPeriod ? map.dayPeriod.toUpperCase() : '',
+          fullDate: `${map.weekday}, ${map.month} ${map.day}, ${map.year}`,
+          hour24: rawHour,
+          minute: rawMinute,
+          dayName: map.weekday
+        };
+      } catch (err) {
+        console.error('Timezone error:', err);
+        return { timeStr: '00:00:00', ampm: 'AM', fullDate: 'Unknown', hour24: 12, minute: 0, dayName: 'Today' };
+      }
+    }
+
+    function formatTimeFromDate(dateObj, tzString = null, is24H = false) {
+      const opts = {
+        hour12: !is24H,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      if (tzString) opts.timeZone = tzString;
+
+      const formatter = new Intl.DateTimeFormat('en-US', opts);
+      const parts = formatter.formatToParts(dateObj);
+      const map = {};
+      parts.forEach(p => map[p.type] = p.value);
+
+      return {
+        timeStr: `${map.hour}:${map.minute}:${map.second}`,
+        ampm: map.dayPeriod ? map.dayPeriod.toUpperCase() : ''
+      };
+    }
+
+    // AUDIENCE ENGAGEMENT ALGORITHM
+    function getAudienceStatus(hour24) {
+      if ((hour24 >= 19 && hour24 < 22) || (hour24 >= 12 && hour24 < 14)) {
+        return {
+          level: 'PEAK',
+          title: 'PEAK UPLOAD WINDOW 🔥',
+          score: '95%',
+          badgeBg: 'bg-emerald-950/50 border-emerald-500/40 text-emerald-300',
+          iconBg: 'bg-emerald-500/20 text-emerald-400',
+          icon: '🔥',
+          advice: 'Target audience is actively scrolling feeds during prime evening or lunch breaks. Maximum engagement potential for Shorts, Reels & Videos!'
+        };
+      } else if ((hour24 >= 8 && hour24 < 12) || (hour24 >= 14 && hour24 < 19)) {
+        return {
+          level: 'MODERATE',
+          title: 'MODERATE ACTIVITY ⚡',
+          score: '75%',
+          badgeBg: 'bg-amber-950/40 border-amber-500/40 text-amber-300',
+          iconBg: 'bg-amber-500/20 text-amber-400',
+          icon: '⚡',
+          advice: 'Decent steady online audience during work/school hours. Good window for long-form posts, stories, and community updates.'
+        };
+      } else {
+        return {
+          level: 'OFFPEAK',
+          title: 'SLEEPING HOURS 💤',
+          score: '25%',
+          badgeBg: 'bg-slate-900/80 border-slate-700/50 text-slate-400',
+          iconBg: 'bg-slate-800 text-slate-400',
+          icon: '💤',
+          advice: 'Audience is mostly asleep or waking up. Lower immediate real-time views expected. Consider scheduling for upcoming peak hours.'
+        };
+      }
+    }
+
+    // CALCULATE TIME DIFFERENCE RELATIVE TO USER LOCAL
+    function calculateTimeDiffText(tzString) {
+      const now = new Date();
+      const localTime = new Date(now.toLocaleString('en-US'));
+      const targetTime = new Date(now.toLocaleString('en-US', { timeZone: tzString }));
+      
+      const diffMs = targetTime - localTime;
+      const diffHours = Math.round(diffMs / (1000 * 60 * 60));
+
+      if (diffHours === 0) return 'Same time as your location';
+      if (diffHours > 0) return `${diffHours} hour${Math.abs(diffHours) > 1 ? 's' : ''} ahead of you`;
+      return `${Math.abs(diffHours)} hour${Math.abs(diffHours) > 1 ? 's' : ''} behind you`;
+    }
+
+    // RENDER HERO CLOCK
+    function renderHeroClock(nowDate = new Date()) {
+      const city = TIMEZONES.find(t => t.id === state.selectedId) || TIMEZONES[0];
+      const data = getTimeInZone(city.tz, nowDate);
+      const status = getAudienceStatus(data.hour24);
+
+      document.getElementById('heroFlag').innerText = city.flag;
+      document.getElementById('heroCity').innerText = city.city;
+      document.getElementById('heroCountry').innerText = city.country;
+      document.getElementById('heroTimezoneCode').innerText = `${city.tz.split('/')[1].replace('_', ' ')} (${getTZOffsetString(city.tz)})`;
+      document.getElementById('heroDescription').innerText = city.tag;
+
+      document.getElementById('heroDigitalClock').innerText = data.timeStr;
+      document.getElementById('heroAmPm').innerText = state.is24Hour ? '' : data.ampm;
+      document.getElementById('heroFullDate').innerText = data.fullDate;
+
+      // Day / Night Indicator
+      const isDaytime = data.hour24 >= 6 && data.hour24 < 18;
+      const dnBadge = document.getElementById('heroDayNightBadge');
+      if (isDaytime) {
+        dnBadge.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold";
+        document.getElementById('heroDayNightIcon').innerText = "☀️";
+        document.getElementById('heroDayNightText').innerText = "Daytime";
+      } else {
+        dnBadge.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 font-semibold";
+        document.getElementById('heroDayNightIcon').innerText = "🌙";
+        document.getElementById('heroDayNightText').innerText = "Nighttime";
+      }
+
+      // Time Diff
+      document.getElementById('heroTimeDiffText').innerText = calculateTimeDiffText(city.tz);
+
+      // Pin Icon state
+      const isPinned = state.pinnedIds.includes(city.id);
+      const pinIcon = document.getElementById('heroPinIcon');
+      pinIcon.className = isPinned ? "fa-solid fa-bookmark text-amber-400" : "fa-regular fa-bookmark text-slate-400";
+
+      // Audience Meter Update
+      const peakBox = document.getElementById('peakStatusBox');
+      peakBox.className = `rounded-2xl p-5 mb-5 transition-all duration-300 ${status.badgeBg}`;
+      
+      document.getElementById('peakBadgeIcon').className = `w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${status.iconBg}`;
+      document.getElementById('peakBadgeIcon').innerText = status.icon;
+      document.getElementById('peakStatusTitle').innerText = status.title;
+      document.getElementById('peakScoreBadge').innerText = status.score;
+      document.getElementById('peakStrategyAdvice').innerText = status.advice;
+    }
+
+    // HELPER TO GET UTC OFFSET STRING
+    function getTZOffsetString(tzString) {
+      try {
+        const now = new Date();
+        const str = now.toLocaleTimeString('en-US', { timeZone: tzString, timeZoneName: 'short' });
+        const parts = str.split(' ');
+        return parts[parts.length - 1];
+      } catch(e) {
+        return 'UTC';
+      }
+    }
+
+    // RENDER PINNED GRID CARDS
+    function renderPinnedGridClocks(nowDate = new Date()) {
+      const container = document.getElementById('pinnedGrid');
+      document.getElementById('pinnedCountBadge').innerText = `${state.pinnedIds.length} Pinned`;
+
+      if (state.pinnedIds.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-8 glass-card rounded-2xl border border-slate-800 text-slate-400 text-xs">
+            No markets pinned. Click "Add More Cities" above to pin your target creator locations!
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      state.pinnedIds.forEach(id => {
+        const city = TIMEZONES.find(t => t.id === id);
+        if (!city) return;
+
+        const data = getTimeInZone(city.tz, nowDate);
+        const status = getAudienceStatus(data.hour24);
+        const isSelected = city.id === state.selectedId;
+
+        html += `
+          <div onclick="selectHeroCity('${city.id}')" class="glass-card glass-card-interactive rounded-2xl p-4 cursor-pointer relative ${isSelected ? 'border-cyan-500/60 ring-1 ring-cyan-500/30' : ''}">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">${city.flag}</span>
+                <div>
+                  <h4 class="font-bold text-white text-sm leading-tight">${city.city}</h4>
+                  <p class="text-[10px] text-slate-400">${city.country}</p>
+                </div>
+              </div>
+
+              <!-- Unpin Button -->
+              <button onclick="event.stopPropagation(); togglePin('${city.id}')" class="text-slate-500 hover:text-amber-400 text-xs p-1" title="Unpin Market">
+                <i class="fa-solid fa-bookmark text-amber-400"></i>
+              </button>
+            </div>
+
+            <!-- Digital Clock -->
+            <div class="my-2">
+              <div class="flex items-baseline justify-between">
+                <span class="font-mono text-2xl font-bold text-white tracking-tight">${data.timeStr}</span>
+                <span class="text-xs font-mono font-semibold text-cyan-400">${state.is24Hour ? '' : data.ampm}</span>
+              </div>
+            </div>
+
+            <!-- Status Badge -->
+            <div class="flex items-center justify-between text-[11px] pt-2 border-t border-slate-800/80">
+              <span class="text-slate-400 font-medium">${data.dayName.substring(0, 3)}</span>
+              <span class="px-2 py-0.5 rounded-full ${status.badgeBg} font-bold text-[10px] flex items-center gap-1">
+                <span>${status.icon}</span> ${status.level}
+              </span>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // UPDATE CONVERTER SIMULATOR OUTPUT
+    function updateConverterOutput() {
+      const minutes = state.sliderMinutes;
+      const hours = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+
+      // Display Local Time Selected
+      const localFormatted = formatMinutesTo12H(hours, mins);
+      document.getElementById('sliderLocalDisplay').innerText = state.is24Hour ? 
+        `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}` : 
+        `${localFormatted.time} ${localFormatted.ampm}`;
+
+      const selectedCity = TIMEZONES.find(t => t.id === state.selectedId) || TIMEZONES[0];
+      document.getElementById('simTargetCityName').innerText = `${selectedCity.city}, ${selectedCity.country}`;
+
+      // Calculate Target Time based on local slider choice
+      const now = new Date();
+      const simulatedLocalDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, mins, 0);
+
+      // Get target timezone representation for that exact local moment
+      const targetData = getTimeInZone(selectedCity.tz, simulatedLocalDate);
+      const targetStatus = getAudienceStatus(targetData.hour24);
+
+      document.getElementById('simTargetTimeDisplay').innerText = state.is24Hour ? 
+        `${String(targetData.hour24).padStart(2,'0')}:${String(targetData.minute).padStart(2,'0')}` : 
+        `${formatMinutesTo12H(targetData.hour24, targetData.minute).time} ${formatMinutesTo12H(targetData.hour24, targetData.minute).ampm}`;
+
+      document.getElementById('simRatingIcon').innerText = targetStatus.icon;
+      document.getElementById('simRatingText').innerText = targetStatus.title;
+
+      // Calculate Best Local Windows to hit Evening Target Peak (19:00 - 22:00 target time)
+      calculateOptimalLocalWindows(selectedCity.tz);
+    }
+
+    function calculateOptimalLocalWindows(targetTz) {
+      const now = new Date();
+      const localStr = now.toLocaleString('en-US');
+      const targetStr = now.toLocaleString('en-US', { timeZone: targetTz });
+      
+      const diffMs = new Date(targetStr) - new Date(localStr);
+      const diffHours = diffMs / (1000 * 60 * 60);
+
+      // Target evening peak starts at 19:00 (7 PM) and ends at 22:00 (10 PM)
+      let localStartHour = (19 - diffHours) % 24;
+      if (localStartHour < 0) localStartHour += 24;
+
+      let localEndHour = (22 - diffHours) % 24;
+      if (localEndHour < 0) localEndHour += 24;
+
+      const start12 = formatMinutesTo12H(Math.floor(localStartHour), 0);
+      const end12 = formatMinutesTo12H(Math.floor(localEndHour), 0);
+
+      document.getElementById('optimalLocalRange').innerText = 
+        `Upload between ${start12.time} ${start12.ampm} - ${end12.time} ${end12.ampm} (Your Local Time)`;
+    }
+
+    function formatMinutesTo12H(h24, m) {
+      const period = h24 >= 12 ? 'PM' : 'AM';
+      let h12 = h24 % 12;
+      if (h12 === 0) h12 = 12;
+      return {
+        time: `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')}`,
+        ampm: period
+      };
+    }
+
+    // SLIDER EVENT HANDLER
+    function onSliderChange(val) {
+      state.sliderMinutes = parseInt(val, 10);
+      updateConverterOutput();
+    }
+
+    function setSliderLocalHour(h) {
+      state.sliderMinutes = h * 60;
+      document.getElementById('timeSlider').value = state.sliderMinutes;
+      updateConverterOutput();
+    }
+
+    // ACTIONS: SELECT HERO CITY
+    function selectHeroCity(id) {
+      state.selectedId = id;
+      updateAppUI();
+      scrollToTop();
+      showToast(`Target audience set to ${TIMEZONES.find(t=>t.id===id).city}`);
+    }
+
+    // ACTIONS: TOGGLE PIN HERO
+    function togglePinHero() {
+      togglePin(state.selectedId);
+    }
+
+    function togglePin(id) {
+      const idx = state.pinnedIds.indexOf(id);
+      if (idx > -1) {
+        state.pinnedIds.splice(idx, 1);
+        showToast('City removed from pinned markets');
+      } else {
+        state.pinnedIds.push(id);
+        showToast('City pinned to your favorites dashboard!');
+      }
+      localStorage.setItem('chrono_pinned_ids', JSON.stringify(state.pinnedIds));
+      updateAppUI();
+    }
+
+    // TOGGLE 12H / 24H TIME FORMAT
+    function toggleTimeFormat() {
+      state.is24Hour = !state.is24Hour;
+      localStorage.setItem('chrono_24h', state.is24Hour);
+      document.getElementById('formatText').innerText = state.is24Hour ? '24-HOUR' : '12-HOUR';
+      tickClocks();
+      showToast(`Time format changed to ${state.is24Hour ? '24-Hour' : '12-Hour'} display`);
+    }
+
+    // COPY HERO TIME INFO TO CLIPBOARD
+    function copyHeroTimeInfo() {
+      const city = TIMEZONES.find(t => t.id === state.selectedId);
+      const data = getTimeInZone(city.tz);
+      const status = getAudienceStatus(data.hour24);
+
+      const textToCopy = `📍 Market: ${city.city}, ${city.country}\n⏰ Live Time: ${data.timeStr} ${data.ampm} (${data.fullDate})\n🔥 Audience Status: ${status.title}\n📊 Score: ${status.score}\n— Generated via ChronoPeak`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy);
+      } else {
+        const dummy = document.createElement('textarea');
+        document.body.appendChild(dummy);
+        dummy.value = textToCopy;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+      }
+
+      showToast('Copied live market info to clipboard!');
+    }
+
+    // QUICK REGION CHIPS RENDER
+    function renderQuickChips() {
+      const popular = TIMEZONES.filter(t => ['usa-ny', 'usa-la', 'mexico-cdmx', 'uk-london', 'japan-tokyo', 'bd-dhaka', 'uae-dubai'].includes(t.id));
+      const container = document.getElementById('quickChipsContainer');
+      
+      container.innerHTML = popular.map(c => `
+        <button onclick="selectHeroCity('${c.id}')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white shrink-0 transition">
+          <span>${c.flag}</span>
+          <span class="font-semibold">${c.city}</span>
+        </button>
+      `).join('');
+    }
+
+    // MODAL SEARCH LOGIC
+    function openSearchModal() {
+      const modal = document.getElementById('searchModal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      document.getElementById('searchInput').focus();
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('searchModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.classList.add('hidden'), 200);
+    }
+
+    function filterRegion(region) {
+      state.activeRegionFilter = region;
+      document.querySelectorAll('.region-tab-btn').forEach(btn => {
+        btn.className = "region-tab-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-800";
+      });
+      event.target.className = "region-tab-btn active px-3 py-1.5 rounded-xl bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30";
+      renderSearchResults(document.getElementById('searchInput').value);
+    }
+
+    function onSearchInput(val) {
+      renderSearchResults(val);
+    }
+
+    function renderSearchResults(query = '') {
+      const container = document.getElementById('searchResultsList');
+      const q = query.toLowerCase().trim();
+
+      const filtered = TIMEZONES.filter(t => {
+        const matchesQuery = t.city.toLowerCase().includes(q) || 
+                             t.country.toLowerCase().includes(q) || 
+                             t.tz.toLowerCase().includes(q) ||
+                             t.tag.toLowerCase().includes(q);
+        const matchesRegion = state.activeRegionFilter === 'all' || t.region === state.activeRegionFilter;
+        return matchesQuery && matchesRegion;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p class="text-center text-xs text-slate-500 py-6">No matching countries or timezones found.</p>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(t => {
+        const isPinned = state.pinnedIds.includes(t.id);
+        const data = getTimeInZone(t.tz);
+
+        return `
+          <div onclick="selectHeroCity('${t.id}'); closeSearchModal();" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800/80 hover:border-cyan-500/40 cursor-pointer transition">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">${t.flag}</span>
+              <div>
+                <h4 class="font-bold text-white text-sm">${t.city}, <span class="text-slate-400 font-normal">${t.country}</span></h4>
+                <p class="text-[11px] text-slate-500 truncate max-w-xs">${t.tag}</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="text-right">
+                <p class="font-mono text-sm font-bold text-cyan-300">${data.timeStr}</p>
+                <p class="text-[10px] text-slate-500">${data.dayName.substring(0,3)}</p>
+              </div>
+
+              <button onclick="event.stopPropagation(); togglePin('${t.id}')" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-amber-400">
+                <i class="${isPinned ? 'fa-solid fa-bookmark text-amber-400' : 'fa-regular fa-bookmark'}"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // UPDATE UI CORE
+    function updateAppUI() {
+      tickClocks();
+      renderSearchResults(document.getElementById('searchInput').value);
+    }
+
+    // TOAST NOTIFICATION SYSTEM
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
